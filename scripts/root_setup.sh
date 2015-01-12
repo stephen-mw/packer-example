@@ -12,13 +12,6 @@ sudo apt-get -y -q install linux-headers-$(uname -r) build-essential dkms nfs-co
 # Install necessary dependencies
 sudo apt-get -y -q install curl wget git tmux firefox xvfb vim
 
-# Setup sudo to allow no-password sudo for "admin"
-groupadd -r admin
-usermod -a -G admin vagrant
-cp /etc/sudoers /etc/sudoers.orig
-sed -i -e '/Defaults\s\+env_reset/a Defaults\texempt_group=admin' /etc/sudoers
-sed -i -e 's/%admin ALL=(ALL) ALL/%admin ALL=NOPASSWD:ALL/g' /etc/sudoers
-
 #Install Redis
 sudo apt-get -y -q install libjemalloc1
 wget -q http://d7jrzzvab3wte.cloudfront.net/checkbot/deb/redis-server_2.6.13-1_amd64.deb
